@@ -236,8 +236,11 @@ later.parse.cron = function (expr, hasSeconds) {
   }
 
 
-  function itemSorter(a,b) {
-    return isHash(a) && !isHash(b) ? 1 : a - b;
+  function itemSorter(a, b) {
+        if (isNaN(a) || isNaN(b)) {
+            return a > b ? 1 : -1;
+        }
+        return a - b;
   }
 
   /**
